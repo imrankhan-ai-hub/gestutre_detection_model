@@ -1,0 +1,58 @@
+#pyproject.toml: project metadata, dependencies and tool settings
+# for the flat-layout gesture-detection project:
+#   camera.py  processor.py  gestures.py  actions.py  main.py
+ 
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+ 
+[project]
+name = "gesture-detection"
+version = "0.1.0"
+description = "Control a Windows PC with hand gestures from a webcam: swipe, cursor, click, drag, scroll and media keys."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["gesture", "hand-tracking", "mediapipe", "opencv", "pyautogui", "hci"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Education",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Human Machine Interfaces",
+]
+ 
+# Runtime dependencies (numpy is installed automatically by opencv-python).
+# Developed and tested against mediapipe 0.10.33 (Tasks API). The old
+# `mp.solutions` API was removed from current releases and is NOT used here.
+dependencies = [
+  "opencv-python>=4.8",
+  "mediapipe>=0.10.30",
+  "pyautogui>=0.9.54",
+]
+ 
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.5",
+]
+ 
+# After `pip install -e .` you can start the program with:  gesture-detection
+[project.scripts]
+gesture-detection = "main:main"
+ 
+# Flat layout: list the modules explicitly so packaging does not guess.
+[tool.setuptools]
+py-modules = ["camera", "processor", "gestures", "actions", "main"]
+ 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+ 
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+ 
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ 

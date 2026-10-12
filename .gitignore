@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+env/
+.venv/
+
+# Model files
+*.h5
+*.pkl
+*.pt
+*.onnx
+*.tflite
+*.task
+checkpoints/
+logs/
+
+# MediaPipe models
+*.task
+mediapipe_models/
+
+# OpenCV / captures
+*.mp4
+*.avi
+*.mov
+frames/
+captures/
+recordings/
+
+# Data
+data/
+datasets/
+*.csv
+*.npy
+*.npz
+
+# Secrets
+.env
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
